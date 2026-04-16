@@ -1,0 +1,20 @@
+namespace: ordo_artificum
+name: netgear
+version: 0.1.0
+readme: README.md
+description: Ansible collection for managing Netgear Smart Managed Plus switches via their web UI
+license:
+  - GPL-3.0-only
+authors:
+  - Jeff Francis <jfrancis@gmail.com>
+tags:
+  - networking
+  - netgear
+  - switch
+  - vlan
+repository: https://github.com/jfrancis42/ansible-netgear
+homepage: https://github.com/jfrancis42/ansible-netgear
+issues: https://github.com/jfrancis42/ansible-netgear/issues
+build_ignore:
+  - "*.pyc"
+  - "__pycache__"
