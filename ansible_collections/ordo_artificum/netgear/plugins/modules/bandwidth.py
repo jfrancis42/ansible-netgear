@@ -122,8 +122,9 @@ def _build_label_map():
         'no-limit', '512k', '1m', '2m', '4m', '8m',
         '16m', '32m', '64m', '128m', '256m', '512m',
     ]
-    # RateLimit values 1–12 correspond to the labels in order
-    members = sorted(RateLimit, key=lambda m: m.value)
+    # RateLimit values 1–12 correspond to the labels in order.
+    # Exclude NONE (value=0) which is a placeholder, not a configurable rate.
+    members = [m for m in sorted(RateLimit, key=lambda m: m.value) if m.value > 0]
     _LABEL_TO_RATE = {label: member for label, member in zip(labels, members)}
 
 
