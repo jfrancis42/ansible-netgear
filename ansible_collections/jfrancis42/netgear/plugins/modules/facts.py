@@ -12,7 +12,7 @@ description:
   - Reads all available state from a Netgear Smart Managed Plus switch and
     registers it as Ansible facts under the C(netgear) key.
   - If an individual subsystem read fails, its key will contain
-    C({'_error': '<message>'}) rather than failing the whole task.
+    a dict with an C(_error) key rather than failing the whole task.
 options:
   host:
     description: Switch management IP or hostname.
