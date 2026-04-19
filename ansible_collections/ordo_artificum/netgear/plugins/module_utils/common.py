@@ -7,7 +7,7 @@ __metaclass__ = type
 
 try:
     from ansible_collections.ordo_artificum.netgear.plugins.module_utils.netgear_switch import (
-        Switch, PortSpeed, RateLimit,
+        Switch, PortSpeed, RateLimit, make_switch as _sdk_make_switch,
     )
     HAS_SDK = True
     SDK_ERROR = None
@@ -17,6 +17,7 @@ except ImportError as e:
     Switch = None
     PortSpeed = None
     RateLimit = None
+    _sdk_make_switch = None
 
 
 # ---------------------------------------------------------------------------
@@ -31,8 +32,8 @@ CONNECTION_ARGS = dict(
 
 
 def make_switch(params):
-    """Instantiate a Switch from module parameters."""
-    return Switch(
+    """Connect to a switch using module parameters; detects model and firmware."""
+    return _sdk_make_switch(
         host=params['host'],
         password=params['password'],
         timeout=params['timeout'],
@@ -116,6 +117,7 @@ def serialize_igmp(igmp):
 
 
 def serialize_vlan_entry(vid, membership_str):
+    # '1'=untagged, '2'=tagged, '3'=not-a-member (firmware encoding; '0' is also not-a-member)
     untagged = [i + 1 for i, c in enumerate(membership_str) if c == '1']
     tagged   = [i + 1 for i, c in enumerate(membership_str) if c == '2']
     return dict(

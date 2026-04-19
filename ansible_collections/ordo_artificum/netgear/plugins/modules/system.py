@@ -58,9 +58,9 @@ EXAMPLES = r'''
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     name: lab-gs105-1
-    ip: 10.1.0.32
-    netmask: 255.255.254.0
-    gateway: 10.1.0.1
+    ip: 192.168.0.1
+    netmask: 255.255.255.0
+    gateway: 192.168.0.254
     dhcp: false
   connection: local
 

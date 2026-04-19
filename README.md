@@ -4,14 +4,19 @@ Manage Netgear Smart Managed Plus switches entirely from Ansible — no CLI,
 no SSH, no REST API required.  The collection reverse-engineers the switch's
 HTTP web UI and exposes all configuration as idempotent Ansible modules.
 
-> **Early release — lightly tested.**  This collection is new.  All modules
-> have been exercised against a single GS105Ev2 (firmware V1.6.0.24), but
-> coverage on other models and firmware versions is unknown.  Please open an
-> issue if something doesn't work on your hardware.
+## Verified hardware
 
-Developed and tested against the **Netgear GS105Ev2** (firmware V1.6.0.24).
-Other Netgear Smart Managed Plus switches that share the same HTTP web UI
-interface may be compatible.
+The following hardware has been confirmed working end-to-end with all
+collection modules:
+
+| Model | Hardware version | Firmware | Ports | Notes |
+|-------|-----------------|----------|-------|-------|
+| GS105Ev2 | v2 | V1.6.0.24 | 5 | Verified |
+| GS305E | v1 | V1.0.0.16 | 5 | Verified |
+
+Other Netgear Smart Managed Plus switches that share the same HTTP web UI are
+expected to be compatible.  Please open an issue if something doesn't work on
+your hardware.
 
 ---
 
@@ -107,7 +112,7 @@ A typical inventory for switches:
 ```ini
 # inventory/hosts.ini
 [switches]
-core-switch  ansible_host=10.1.0.32
+core-switch  ansible_host=192.168.0.1
 
 [switches:vars]
 ansible_connection=local
@@ -126,9 +131,9 @@ all:
         netgear_password: yourpassword
       hosts:
         core-switch:
-          ansible_host: 10.1.0.32
+          ansible_host: 192.168.0.1
         access-switch:
-          ansible_host: 10.1.0.33
+          ansible_host: 192.168.0.2
 ```
 
 Store the password in an Ansible Vault file:
@@ -216,9 +221,9 @@ Only parameters you specify are changed; everything else is left as-is.
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     name: lab-gs105-1
-    ip: 10.1.0.32
-    netmask: 255.255.254.0
-    gateway: 10.1.0.1
+    ip: 192.168.0.1
+    netmask: 255.255.255.0
+    gateway: 192.168.0.254
     dhcp: false
   connection: local
 
