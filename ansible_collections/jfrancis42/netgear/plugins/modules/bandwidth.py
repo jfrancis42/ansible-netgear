@@ -57,7 +57,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Limit port 3 ingress to 1 Mbps, egress to 512 Kbps
-  ordo_artificum.netgear.bandwidth:
+  jfrancis42.netgear.bandwidth:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     port: [3]
@@ -66,7 +66,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Remove rate limits from ports 1 and 2
-  ordo_artificum.netgear.bandwidth:
+  jfrancis42.netgear.bandwidth:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     port: [1, 2]
@@ -75,7 +75,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Limit guest port ingress only
-  ordo_artificum.netgear.bandwidth:
+  jfrancis42.netgear.bandwidth:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     port: [4]
@@ -97,12 +97,12 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.netgear.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.netgear.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
         serialize_rate_limit,
     )
     if HAS_SDK:
-        from ansible_collections.ordo_artificum.netgear.plugins.module_utils.netgear_switch import (
+        from ansible_collections.jfrancis42.netgear.plugins.module_utils.netgear_switch import (
             RateLimit,
         )
     else:

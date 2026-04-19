@@ -1,4 +1,4 @@
-# ordo_artificum.netgear — Ansible Collection for Netgear Smart Managed Plus Switches
+# jfrancis42.netgear — Ansible Collection for Netgear Smart Managed Plus Switches
 
 Manage Netgear Smart Managed Plus switches entirely from Ansible — no CLI,
 no SSH, no REST API required.  The collection reverse-engineers the switch's
@@ -25,7 +25,7 @@ interface may be compatible.
 ## Installation
 
 ```bash
-ansible-galaxy collection install ordo_artificum.netgear
+ansible-galaxy collection install jfrancis42.netgear
 ```
 
 ---
@@ -71,12 +71,12 @@ The GS105Ev2 does not use a username — only a password is required.
   tasks:
 
     - name: Gather switch facts
-      ordo_artificum.netgear.facts:
+      jfrancis42.netgear.facts:
         host: "{{ ansible_host }}"
         password: "{{ netgear_password }}"
 
     - name: Full L2 hardening
-      ordo_artificum.netgear.igmp:
+      jfrancis42.netgear.igmp:
         host: "{{ ansible_host }}"
         password: "{{ netgear_password }}"
         igmp_enabled: true
@@ -86,7 +86,7 @@ The GS105Ev2 does not use a username — only a password is required.
         broadcast_filter: true
 
     - name: Create VLAN 10 (port 5 trunk, ports 1-4 access)
-      ordo_artificum.netgear.vlan:
+      jfrancis42.netgear.vlan:
         host: "{{ ansible_host }}"
         password: "{{ netgear_password }}"
         vlan_id: 10

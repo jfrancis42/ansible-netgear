@@ -54,7 +54,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Set switch name and static IP
-  ordo_artificum.netgear.system:
+  jfrancis42.netgear.system:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     name: lab-gs105-1
@@ -65,14 +65,14 @@ EXAMPLES = r'''
   connection: local
 
 - name: Enable DHCP
-  ordo_artificum.netgear.system:
+  jfrancis42.netgear.system:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     dhcp: true
   connection: local
 
 - name: Rotate admin password
-  ordo_artificum.netgear.system:
+  jfrancis42.netgear.system:
     host: "{{ ansible_host }}"
     password: "{{ current_password }}"
     new_password: "{{ new_password }}"
@@ -94,7 +94,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.netgear.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.netgear.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
         serialize_switch_config,
     )

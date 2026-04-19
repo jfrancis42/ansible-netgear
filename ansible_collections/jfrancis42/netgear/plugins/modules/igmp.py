@@ -59,14 +59,14 @@ notes:
 
 EXAMPLES = r'''
 - name: Enable IGMP snooping
-  ordo_artificum.netgear.igmp:
+  jfrancis42.netgear.igmp:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     igmp_enabled: true
   connection: local
 
 - name: Enable loop detection and broadcast filter
-  ordo_artificum.netgear.igmp:
+  jfrancis42.netgear.igmp:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     loop_detection: true
@@ -74,7 +74,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Full L2 hardening in one task
-  ordo_artificum.netgear.igmp:
+  jfrancis42.netgear.igmp:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     igmp_enabled: true
@@ -85,7 +85,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Restrict IGMP snooping to VLAN 10 with static router port on gi5
-  ordo_artificum.netgear.igmp:
+  jfrancis42.netgear.igmp:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     igmp_enabled: true
@@ -116,7 +116,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.netgear.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.netgear.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
         serialize_igmp,
     )

@@ -47,7 +47,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Mirror ports 1-3 to port 5 for packet capture
-  ordo_artificum.netgear.mirror:
+  jfrancis42.netgear.mirror:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     dest_port: 5
@@ -56,7 +56,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Disable port mirroring
-  ordo_artificum.netgear.mirror:
+  jfrancis42.netgear.mirror:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     state: absent
@@ -77,7 +77,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.netgear.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.netgear.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
         serialize_mirror,
     )
