@@ -142,11 +142,13 @@ def _membership_str(vid, current_mem, tagged_ports, untagged_ports, port_count):
     """
     Build an updated membership string for a VLAN.
 
-    Starts from current_mem (or all-zeros for new VLANs).  Applies
-    tagged_ports and untagged_ports on top.  Ports not mentioned keep
-    their current membership.
+    Starts from current_mem (or all-'3' for new VLANs — the firmware's
+    encoding for "not a member").  Applies tagged_ports and untagged_ports
+    on top.  Ports not mentioned keep their current membership.
+
+    Firmware encoding: '1'=untagged, '2'=tagged, '3'=not-a-member.
     """
-    base = list(current_mem) if current_mem else ['0'] * port_count
+    base = list(current_mem) if current_mem else ['3'] * port_count
     if tagged_ports is not None:
         for p in tagged_ports:
             if 1 <= p <= port_count:
