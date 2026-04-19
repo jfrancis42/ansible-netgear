@@ -35,7 +35,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Gather switch facts
-  ordo_artificum.netgear.facts:
+  jfrancis42.netgear.facts:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
   connection: local
@@ -102,7 +102,7 @@ ansible_facts:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.netgear.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.netgear.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
         serialize_system_info, serialize_switch_config, serialize_port_info,
         serialize_port_stats, serialize_rate_limit, serialize_mirror,

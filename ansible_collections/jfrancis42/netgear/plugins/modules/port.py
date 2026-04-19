@@ -53,7 +53,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Enable ports 1-4 at auto speed with flow control
-  ordo_artificum.netgear.port:
+  jfrancis42.netgear.port:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     port: [1, 2, 3, 4]
@@ -62,7 +62,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Disable an unused port
-  ordo_artificum.netgear.port:
+  jfrancis42.netgear.port:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     port: [5]
@@ -70,7 +70,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Force port 2 to 100M full-duplex, no flow control
-  ordo_artificum.netgear.port:
+  jfrancis42.netgear.port:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     port: [2]
@@ -93,7 +93,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.netgear.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.netgear.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
         serialize_port_info, PortSpeed,
     )

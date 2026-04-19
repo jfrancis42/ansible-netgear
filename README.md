@@ -1,4 +1,4 @@
-# ordo_artificum.netgear — Ansible Collection for Netgear Smart Managed Plus Switches
+# jfrancis42.netgear — Ansible Collection for Netgear Smart Managed Plus Switches
 
 Manage Netgear Smart Managed Plus switches entirely from Ansible — no CLI,
 no SSH, no REST API required.  The collection reverse-engineers the switch's
@@ -53,13 +53,13 @@ your hardware.
 ## Installation
 
 ```bash
-ansible-galaxy collection install ordo_artificum.netgear
+ansible-galaxy collection install jfrancis42.netgear
 ```
 
 Or pin a specific version:
 
 ```bash
-ansible-galaxy collection install ordo_artificum.netgear:==0.1.0
+ansible-galaxy collection install jfrancis42.netgear:==0.1.0
 ```
 
 ---
@@ -74,7 +74,7 @@ ansible-galaxy collection install ordo_artificum.netgear:==0.1.0
   tasks:
 
     - name: Gather switch facts
-      ordo_artificum.netgear.facts:
+      jfrancis42.netgear.facts:
         host: "{{ ansible_host }}"
         password: "{{ netgear_password }}"
 
@@ -83,7 +83,7 @@ ansible-galaxy collection install ordo_artificum.netgear:==0.1.0
         msg: "Firmware: {{ netgear.config.firmware }}"
 
     - name: Ensure loop detection and broadcast filter are on
-      ordo_artificum.netgear.igmp:
+      jfrancis42.netgear.igmp:
         host: "{{ ansible_host }}"
         password: "{{ netgear_password }}"
         loop_detection: true
@@ -171,7 +171,7 @@ If an individual subsystem read fails, its key contains
 
 ```yaml
 - name: Gather switch facts
-  ordo_artificum.netgear.facts:
+  jfrancis42.netgear.facts:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
   connection: local
@@ -217,7 +217,7 @@ Only parameters you specify are changed; everything else is left as-is.
 ```yaml
 # Set switch name and static IP
 - name: Set switch name and static IP
-  ordo_artificum.netgear.system:
+  jfrancis42.netgear.system:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     name: lab-gs105-1
@@ -229,7 +229,7 @@ Only parameters you specify are changed; everything else is left as-is.
 
 # Enable DHCP
 - name: Enable DHCP
-  ordo_artificum.netgear.system:
+  jfrancis42.netgear.system:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     dhcp: true
@@ -237,7 +237,7 @@ Only parameters you specify are changed; everything else is left as-is.
 
 # Change the admin password
 - name: Rotate admin password
-  ordo_artificum.netgear.system:
+  jfrancis42.netgear.system:
     host: "{{ ansible_host }}"
     password: "{{ current_password }}"
     new_password: "{{ new_password }}"
@@ -270,7 +270,7 @@ Port numbers are 1-based.
 ```yaml
 # Enable ports 1-4 at auto speed with flow control
 - name: Configure access ports
-  ordo_artificum.netgear.port:
+  jfrancis42.netgear.port:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     port: [1, 2, 3, 4]
@@ -280,7 +280,7 @@ Port numbers are 1-based.
 
 # Disable an unused port
 - name: Shut down unused port
-  ordo_artificum.netgear.port:
+  jfrancis42.netgear.port:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     port: [3]
@@ -289,7 +289,7 @@ Port numbers are 1-based.
 
 # Force port 2 to 100M full-duplex, no flow control
 - name: Lock port speed
-  ordo_artificum.netgear.port:
+  jfrancis42.netgear.port:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     port: [2]
@@ -311,7 +311,7 @@ is copied to the destination port for analysis.
 ```yaml
 # Mirror ports 1-3 to port 5 (capture device on port 5)
 - name: Enable port mirroring
-  ordo_artificum.netgear.mirror:
+  jfrancis42.netgear.mirror:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     dest_port: 5
@@ -321,7 +321,7 @@ is copied to the destination port for analysis.
 
 # Disable mirroring
 - name: Disable port mirroring
-  ordo_artificum.netgear.mirror:
+  jfrancis42.netgear.mirror:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     state: absent
@@ -339,7 +339,7 @@ parameter must be specified.
 ```yaml
 # Enable IGMP snooping
 - name: Enable IGMP snooping
-  ordo_artificum.netgear.igmp:
+  jfrancis42.netgear.igmp:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     igmp_enabled: true
@@ -347,7 +347,7 @@ parameter must be specified.
 
 # Enable loop detection and broadcast filter
 - name: Enable loop detection and broadcast filter
-  ordo_artificum.netgear.igmp:
+  jfrancis42.netgear.igmp:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     loop_detection: true
@@ -356,7 +356,7 @@ parameter must be specified.
 
 # Full L2 hardening in one task
 - name: Harden L2 settings
-  ordo_artificum.netgear.igmp:
+  jfrancis42.netgear.igmp:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     igmp_enabled: true
@@ -368,7 +368,7 @@ parameter must be specified.
 
 # Restrict IGMP snooping to VLAN 10, with static router port on port 5
 - name: IGMP snooping for VLAN 10
-  ordo_artificum.netgear.igmp:
+  jfrancis42.netgear.igmp:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     igmp_enabled: true
@@ -390,14 +390,14 @@ Set the global QoS scheduling mode.
 
 ```yaml
 - name: Set QoS to port-based mode
-  ordo_artificum.netgear.qos:
+  jfrancis42.netgear.qos:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     mode: port-based
   connection: local
 
 - name: Set QoS to 802.1p/DSCP mode
-  ordo_artificum.netgear.qos:
+  jfrancis42.netgear.qos:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     mode: 802.1p/dscp
@@ -417,7 +417,7 @@ Rate limits use named labels rather than raw kbps values.
 ```yaml
 # Limit port 3 ingress to 1 Mbps, egress to 512 Kbps
 - name: Rate-limit guest port
-  ordo_artificum.netgear.bandwidth:
+  jfrancis42.netgear.bandwidth:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     port: [3]
@@ -427,7 +427,7 @@ Rate limits use named labels rather than raw kbps values.
 
 # Limit ingress on all client ports to 8 Mbps
 - name: Restrict client upload
-  ordo_artificum.netgear.bandwidth:
+  jfrancis42.netgear.bandwidth:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     port: [1, 2, 3, 4]
@@ -436,7 +436,7 @@ Rate limits use named labels rather than raw kbps values.
 
 # Remove rate limits from all ports
 - name: Remove bandwidth limits
-  ordo_artificum.netgear.bandwidth:
+  jfrancis42.netgear.bandwidth:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     port: [1, 2, 3, 4, 5]
@@ -458,7 +458,7 @@ and optionally set per-port PVIDs for untagged members.
 ```yaml
 # Enable 802.1Q and create VLAN 10: port 5 as trunk, ports 1-2 as access
 - name: Create management VLAN 10
-  ordo_artificum.netgear.vlan:
+  jfrancis42.netgear.vlan:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     vlan_id: 10
@@ -470,7 +470,7 @@ and optionally set per-port PVIDs for untagged members.
 
 # Create a guest VLAN
 - name: Create guest VLAN 20
-  ordo_artificum.netgear.vlan:
+  jfrancis42.netgear.vlan:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     vlan_id: 20
@@ -482,7 +482,7 @@ and optionally set per-port PVIDs for untagged members.
 
 # Delete a VLAN
 - name: Remove VLAN 20
-  ordo_artificum.netgear.vlan:
+  jfrancis42.netgear.vlan:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     vlan_id: 20
@@ -491,7 +491,7 @@ and optionally set per-port PVIDs for untagged members.
 
 # Enable 802.1Q mode without configuring VLANs
 - name: Enable 802.1Q mode
-  ordo_artificum.netgear.vlan:
+  jfrancis42.netgear.vlan:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     dot1q_enabled: true
@@ -510,7 +510,7 @@ diagnostics.
 ```yaml
 # Reboot the switch
 - name: Reboot switch
-  ordo_artificum.netgear.maintenance:
+  jfrancis42.netgear.maintenance:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     action: reboot
@@ -526,7 +526,7 @@ diagnostics.
 
 # Run cable diagnostics on all ports
 - name: Run cable test
-  ordo_artificum.netgear.maintenance:
+  jfrancis42.netgear.maintenance:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     action: cable_diag
@@ -539,7 +539,7 @@ diagnostics.
 
 # Factory reset (DESTRUCTIVE — erases all config)
 - name: Factory reset
-  ordo_artificum.netgear.maintenance:
+  jfrancis42.netgear.maintenance:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     action: factory_reset
@@ -562,7 +562,7 @@ diagnostics.
   tasks:
 
     - name: Set permanent IP address and name
-      ordo_artificum.netgear.system:
+      jfrancis42.netgear.system:
         host: "{{ initial_host }}"
         password: "{{ initial_password }}"
         name: "{{ inventory_hostname }}"
@@ -572,7 +572,7 @@ diagnostics.
         dhcp: false
 
     - name: Change default password
-      ordo_artificum.netgear.system:
+      jfrancis42.netgear.system:
         host: "{{ initial_host }}"
         password: "{{ initial_password }}"
         new_password: "{{ netgear_password }}"
@@ -585,7 +585,7 @@ diagnostics.
         timeout: 30
 
     - name: Harden L2 settings
-      ordo_artificum.netgear.igmp:
+      jfrancis42.netgear.igmp:
         host: "{{ ansible_host }}"
         password: "{{ netgear_password }}"
         igmp_enabled: true
@@ -609,7 +609,7 @@ port 5 as a tagged uplink carrying both.
   tasks:
 
     - name: Management VLAN 10 — port 1 access, port 5 trunk
-      ordo_artificum.netgear.vlan:
+      jfrancis42.netgear.vlan:
         host: "{{ ansible_host }}"
         password: "{{ netgear_password }}"
         vlan_id: 10
@@ -619,7 +619,7 @@ port 5 as a tagged uplink carrying both.
         state: present
 
     - name: Client VLAN 20 — ports 2-4 access, port 5 trunk
-      ordo_artificum.netgear.vlan:
+      jfrancis42.netgear.vlan:
         host: "{{ ansible_host }}"
         password: "{{ netgear_password }}"
         vlan_id: 20
@@ -640,7 +640,7 @@ port 5 as a tagged uplink carrying both.
   tasks:
 
     - name: Limit client ports to 8 Mbps in and out
-      ordo_artificum.netgear.bandwidth:
+      jfrancis42.netgear.bandwidth:
         host: "{{ ansible_host }}"
         password: "{{ netgear_password }}"
         port: [1, 2, 3, 4]
@@ -648,7 +648,7 @@ port 5 as a tagged uplink carrying both.
         egress: 8m
 
     - name: Remove limits from uplink port 5
-      ordo_artificum.netgear.bandwidth:
+      jfrancis42.netgear.bandwidth:
         host: "{{ ansible_host }}"
         password: "{{ netgear_password }}"
         port: [5]
@@ -667,7 +667,7 @@ port 5 as a tagged uplink carrying both.
   tasks:
 
     - name: Enable IGMP snooping, loop detection, and broadcast filter
-      ordo_artificum.netgear.igmp:
+      jfrancis42.netgear.igmp:
         host: "{{ ansible_host }}"
         password: "{{ netgear_password }}"
         igmp_enabled: true
@@ -677,7 +677,7 @@ port 5 as a tagged uplink carrying both.
         broadcast_filter: true
 
     - name: Disable unused ports
-      ordo_artificum.netgear.port:
+      jfrancis42.netgear.port:
         host: "{{ ansible_host }}"
         password: "{{ netgear_password }}"
         port: "{{ unused_ports }}"
@@ -695,7 +695,7 @@ use it in subsequent tasks:
 
 ```yaml
 - name: Gather facts
-  ordo_artificum.netgear.facts:
+  jfrancis42.netgear.facts:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
   connection: local
@@ -706,7 +706,7 @@ use it in subsequent tasks:
   when: "'V1.6.0' not in netgear.config.firmware"
 
 - name: Run cable diagnostics
-  ordo_artificum.netgear.maintenance:
+  jfrancis42.netgear.maintenance:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     action: cable_diag

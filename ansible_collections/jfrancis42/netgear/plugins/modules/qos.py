@@ -41,14 +41,14 @@ notes:
 
 EXAMPLES = r'''
 - name: Set QoS to port-based mode
-  ordo_artificum.netgear.qos:
+  jfrancis42.netgear.qos:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     mode: port-based
   connection: local
 
 - name: Set QoS to 802.1p/DSCP mode
-  ordo_artificum.netgear.qos:
+  jfrancis42.netgear.qos:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     mode: 802.1p/dscp
@@ -69,7 +69,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.netgear.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.netgear.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
     )
 except ImportError:

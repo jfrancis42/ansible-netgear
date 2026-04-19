@@ -6,7 +6,7 @@ __metaclass__ = type
 # ---------------------------------------------------------------------------
 
 try:
-    from ansible_collections.ordo_artificum.netgear.plugins.module_utils.netgear_switch import (
+    from ansible_collections.jfrancis42.netgear.plugins.module_utils.netgear_switch import (
         Switch, PortSpeed, RateLimit, make_switch as _sdk_make_switch,
     )
     HAS_SDK = True

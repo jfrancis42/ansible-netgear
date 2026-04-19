@@ -68,7 +68,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Enable 802.1Q and create VLAN 10 with port 5 as trunk, ports 1-2 as access
-  ordo_artificum.netgear.vlan:
+  jfrancis42.netgear.vlan:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     vlan_id: 10
@@ -79,7 +79,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Add port 3 as an untagged member of VLAN 10
-  ordo_artificum.netgear.vlan:
+  jfrancis42.netgear.vlan:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     vlan_id: 10
@@ -89,7 +89,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Remove VLAN 10
-  ordo_artificum.netgear.vlan:
+  jfrancis42.netgear.vlan:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     vlan_id: 10
@@ -97,7 +97,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Enable 802.1Q mode without configuring any VLANs
-  ordo_artificum.netgear.vlan:
+  jfrancis42.netgear.vlan:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     dot1q_enabled: true
@@ -128,7 +128,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.netgear.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.netgear.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
         serialize_vlan_entry,
     )

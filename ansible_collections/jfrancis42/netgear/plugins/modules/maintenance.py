@@ -59,14 +59,14 @@ notes:
 
 EXAMPLES = r'''
 - name: Reboot switch
-  ordo_artificum.netgear.maintenance:
+  jfrancis42.netgear.maintenance:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     action: reboot
   connection: local
 
 - name: Factory reset (DESTRUCTIVE)
-  ordo_artificum.netgear.maintenance:
+  jfrancis42.netgear.maintenance:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     action: factory_reset
@@ -74,7 +74,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Run cable diagnostics on all ports
-  ordo_artificum.netgear.maintenance:
+  jfrancis42.netgear.maintenance:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     action: cable_diag
@@ -86,7 +86,7 @@ EXAMPLES = r'''
     var: diag.cable_diag
 
 - name: Run cable diagnostics on ports 1 and 2 only
-  ordo_artificum.netgear.maintenance:
+  jfrancis42.netgear.maintenance:
     host: "{{ ansible_host }}"
     password: "{{ netgear_password }}"
     action: cable_diag
@@ -108,7 +108,7 @@ cable_diag:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.netgear.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.netgear.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
     )
 except ImportError:
